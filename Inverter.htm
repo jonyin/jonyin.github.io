@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://gorried.github.io/inverter/game.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Inverter</title>
+
+	<link rel="stylesheet" type="text/css" href="./Inverter_files/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./Inverter_files/style.css">
+
+	<script async="" src="./Inverter_files/analytics.js"></script><script type="text/javascript" src="./Inverter_files/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="./Inverter_files/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./Inverter_files/viewmodel.js"></script>
+	<script type="text/javascript" src="./Inverter_files/controller.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-52810526-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="heading">
+			<h1 class="title">倒转</h1>
+			<div class="scoresContainer">
+				<div class="currLevel">当前等级: <b>3</b></div>
+				<div class="best">最高等级: <b>3</b> (37 clicks)</div>
+				<div class="score">当前点击: <b>104</b></div>
+				<div class="total">点击总数: <b>104</b></div>
+			</div>
+		</div>
+		<div class="aboveGame">
+			<p class="gameInfo"></p>
+			<a class="reset btn btn-primary">重玩</a>
+			<a class="newgame btn btn-primary">新游戏</a>
+			<a class="instruct btn btn-primary">游戏说明</a>
+		</div>
+		<div class="board" style="padding: 15px 15px 0px;"><div class="gamerow" style="height: 175px; margin-right: -15px; margin-bottom: 15px;"><div class="gamesquare coord0q0" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div><div class="gamesquare coord1q0" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div><div class="gamesquare coord2q0" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div></div><div class="gamerow" style="height: 175px; margin-right: -15px; margin-bottom: 15px;"><div class="gamesquare coord0q1" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div><div class="gamesquare coord1q1" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div><div class="gamesquare coord2q1" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div></div><div class="gamerow" style="height: 175px; margin-right: -15px; margin-bottom: 15px;"><div class="gamesquare coord0q2" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div><div class="gamesquare coord1q2" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div><div class="gamesquare coord2q2" style="margin-right: 15px; width: 175px; height: 175px; background-color: rgb(230, 171, 94);"></div></div></div>
+	</div>
+
+
+
+	<div id="instructions" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content" id="pullThisHeight">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">Instructions</h4>
+				</div>
+				<div class="modal-body">
+					<p>怎么赢: 使所有方格变成蓝色. <br>
+					怎么玩: 点击方格翻转方格及其边相邻的方格的颜色.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Lets go!</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div id="newLevel" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="cheesyGoodJob"></h4>
+				</div>
+				<div class="modal-body">
+					<p id="levelDescriptor"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Go</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div id="newGame" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">你确定吗?</h4>
+				</div>
+				<div class="modal-body">
+					<p>你真的想重新开始？</p>
+				</div>
+				<div class="modal-footer">
+					<button id="newGameConfirm" type="button" class="btn btn-success" data-dismiss="modal">新的游戏</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div id="restartLevel" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="cheesyGoodJob">你确定吗?</h4>
+				</div>
+				<div class="modal-body">
+					<p>你真的想重新玩？</p>
+				</div>
+				<div class="modal-footer">
+					<button id="resetLevelConfirm" type="button" class="btn btn-success" data-dismiss="modal">重新玩</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+</body></html>
