@@ -157,6 +157,7 @@ function Game() {
 		$(".score").html("\u5F53\u524D\u70B9\u51FB: <b>" + this.currentClicks +"</b>");
 		$(".best").html("\u6700\u9AD8\u7EA7\u522B: <b>" + this.bestLevel + "</b> (" + this.clicksForBest + " clicks)");
 		$(".total").html("\u603B\u70B9\u51FB\u6570: <b>" + this.totalClicks + "</b>");
+		$("title").text("\u6BD42048\u8FD8\u597D\u73A9\u7684\u6E38\u620F\uFF0C\u6211\u53EA\u80FD\u73A9\u5230\u7B2C" + this.bestLevel + "\u5173\u3002\u3002\u3002");
 	}
 
 	this.applyBindings = function() {
